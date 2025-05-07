@@ -1,7 +1,7 @@
 # SkyCaptioner-V1: A Structural Video Captioning Model
 
 <p align="center">
-📑 <a href="https://arxiv.org/pdf/2504.13074">Technical Report</a> · 👋 <a href="https://www.skyreels.ai/home?utm_campaign=github_SkyReels_V2" target="_blank">Playground</a> · 💬 <a href="https://discord.gg/PwM6NYtccQ" target="_blank">Discord</a> · 🤗 <a href="https://huggingface.co/Skywork/SkyCaptioner-V1" target="_blank">Hugging Face</a> · 🤖 <a href="https://modelscope.cn/collections/SkyReels-V2-f665650130b144">ModelScope</a></a>
+📑 <a href="https://arxiv.org/pdf/2504.13074">Technical Report</a> · 👋 <a href="https://www.skyreels.ai/home?utm_campaign=github_SkyReels_V2" target="_blank">Playground</a> · 💬 <a href="https://discord.gg/PwM6NYtccQ" target="_blank">Discord</a> · 🤗 <a href="https://huggingface.co/Skywork/SkyCaptioner-V1" target="_blank">Hugging Face</a> · 🤖 <a href="https://modelscope.cn/collections/SkyReels-V2-f665650130b144">ModelScope</a> · 🚀 <a href="https://huggingface.co/spaces/Skywork/SkyCaptioner-V1">Demo</a> 
 </p>
 
 ---
@@ -9,7 +9,7 @@
 Welcome to the SkyCaptioner-V1 repository! Here, you'll find the structural video captioning model weights and inference code for our video captioner that labels the video data efficiently and comprehensively.
 
 ## 🔥🔥🔥 News!!
-
+* May 07, 2025: 🚀 Added a web demo implementation based on Gradio and the [online demo](https://huggingface.co/spaces/Skywork/SkyCaptioner-V1) is now available! 
 * Apr 21, 2025: 👋 We release the [vllm](https://github.com/vllm-project/vllm) batch inference code for SkyCaptioner-V1 Model and caption fusion inference code.
 * Apr 21, 2025: 👋 We release the first shot-aware video captioning model [SkyCaptioner-V1  Model](https://huggingface.co/Skywork/SkyCaptioner-V1). For more details, please check our [paper](https://arxiv.org/pdf/2504.13074).
 
@@ -20,7 +20,7 @@ Welcome to the SkyCaptioner-V1 repository! Here, you'll find the structural vide
   - [x] Checkpoints
   - [x] Batch Inference Code
   - [x] Caption Fusion Method
-  - [ ] Web Demo (Gradio)
+  - [x] Web Demo (Gradio)
 
 ## 🌟 Overview
 
@@ -240,6 +240,22 @@ python scripts/vllm_fusion_caption.py \
 ```
 > **Note**: 
 > - If you want to get i2v caption, just change the `--task t2v` to `--task i2v` in your Command.
+
+#### Gradio Web Demo
+Launch the Gradio web demo for SkyCaptioner-V1:
+```shell
+export SkyCaptioner_V1_Model_PATH="/path/to/your_local_model_path"
+python scripts/gradio_struct_caption.py \
+    --skycaptioner_model_path ${SkyCaptioner_V1_Model_PATH}
+```
+
+Launch the Gradio web demo for Caption Fusion:
+```shell
+export LLM_MODEL_PATH="/path/to/your_local_model_path2"
+python scripts/gradio_fusion_caption.py \
+    --fusioncaptioner_model_path ${LLM_MODEL_PATH} \
+```
+
 
 ## Acknowledgements
 
