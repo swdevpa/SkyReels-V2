@@ -64,9 +64,15 @@ SHOT_TYPE_LIST = [
 
 
 class StructuralCaptionDataset(torch.utils.data.Dataset):
-    def __init__(self, input_csv, model_path):
-        self.meta = pd.read_csv(input_csv)
-        self.task = args.task
+    def __init__(self, input_csv, model_path, task=None):
+        if isinstance(input_csv, pd.DataFrame):
+            self.meta = input_csv
+        else:
+            self.meta = pd.read_csv(input_csv)
+        if task is None:
+            self.task = args.task
+        else:
+            self.task = task
         self.system_prompt = SYSTEM_PROMPT_T2V if self.task == 't2v' else SYSTEM_PROMPT_I2V
         self.tokenizer = AutoTokenizer.from_pretrained(model_path)
         
@@ -146,8 +152,8 @@ class StructuralCaptionDataset(torch.utils.data.Dataset):
 
 
         shot_type = struct_caption.get('shot_type', '').replace('_', ' ')
-        if shot_type not in SHOT_TYPE_LIST:
-            struct_caption['shot_type'] = ''
+        # if shot_type not in SHOT_TYPE_LIST:
+        #     struct_caption['shot_type'] = ''
         
         new_struct_caption = {
             'num_subjects': len(subjects),

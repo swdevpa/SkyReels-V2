@@ -17,7 +17,10 @@ SYSTEM_PROMPT = "I need you to generate a structured and detailed caption for th
 
 class VideoTextDataset(torch.utils.data.Dataset):
     def __init__(self, csv_path, model_path):
-        self.meta = pd.read_csv(csv_path)
+        if isinstance(csv_path, pd.DataFrame):
+            self.meta = csv_path
+        else:
+            self.meta = pd.read_csv(csv_path)
         self._path = 'path'
         self.tokenizer = AutoTokenizer.from_pretrained(model_path)
         self.processor = AutoProcessor.from_pretrained(model_path)
