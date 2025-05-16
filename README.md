@@ -248,7 +248,7 @@ python3 generate_video_df.py \
 - **<span id="se">Start/End Frame Control</span>**
 ```shell
 model_id=Skywork/SkyReels-V2-DF-14B-540P
-# asynchronous inference
+# start/end frame control
 python3 generate_video_df.py \
   --model_id ${model_id} \
   --resolution 540P \
