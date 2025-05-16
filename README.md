@@ -13,6 +13,7 @@ Welcome to the **SkyReels V2** repository! Here, you'll find the model weights a
 
 
 ## 🔥🔥🔥 News!!
+* May 16, 2025: 🔥 We support video extension and experimental features for start/end frame control.
 * Apr 24, 2025: 🔥 We release the 720P models, [SkyReels-V2-DF-14B-720P](https://huggingface.co/Skywork/SkyReels-V2-DF-14B-720P) and [SkyReels-V2-I2V-14B-720P](https://huggingface.co/Skywork/SkyReels-V2-I2V-14B-720P). The former facilitates infinite-length autoregressive video generation, and the latter focuses on Image2Video synthesis.
 * Apr 21, 2025: 👋 We release the inference code and model weights of [SkyReels-V2](https://huggingface.co/collections/Skywork/skyreels-v2-6801b1b93df627d441d0d0d9) Series Models and the video captioning model [SkyCaptioner-V1](https://huggingface.co/Skywork/SkyCaptioner-V1) .
 * Apr 3, 2025: 🔥 We also release [SkyReels-A2](https://github.com/SkyworkAI/SkyReels-A2). This is an open-sourced controllable video generation framework capable of assembling arbitrary visual elements.
@@ -288,6 +289,8 @@ Below are the key parameters you can customize for video generation:
 | --overlap_history | 17 | Number of frames to overlap for smooth transitions in long videos |
 | --addnoise_condition | 20 | Improves consistency in long video generation |
 | --causal_block_size | 5 | Recommended when using asynchronous inference (--ar_step > 0) |
+--video_path |  | Path to input video for video extension |
+--end_image | | Path to input image for end frame control |
 
 #### Multi-GPU inference using xDiT USP
 
