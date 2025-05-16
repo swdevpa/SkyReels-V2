@@ -13,7 +13,7 @@ Welcome to the **SkyReels V2** repository! Here, you'll find the model weights a
 
 
 ## 🔥🔥🔥 News!!
-* May 16, 2025: 🔥 We support video extension and experimental features for start/end frame control in diffusion forcing model.
+* May 16, 2025: 🔥 We release the inference code for [video extension](#ve) and [start/end frame control](#se) in diffusion forcing model.
 * Apr 24, 2025: 🔥 We release the 720P models, [SkyReels-V2-DF-14B-720P](https://huggingface.co/Skywork/SkyReels-V2-DF-14B-720P) and [SkyReels-V2-I2V-14B-720P](https://huggingface.co/Skywork/SkyReels-V2-I2V-14B-720P). The former facilitates infinite-length autoregressive video generation, and the latter focuses on Image2Video synthesis.
 * Apr 21, 2025: 👋 We release the inference code and model weights of [SkyReels-V2](https://huggingface.co/collections/Skywork/skyreels-v2-6801b1b93df627d441d0d0d9) Series Models and the video captioning model [SkyCaptioner-V1](https://huggingface.co/Skywork/SkyCaptioner-V1) .
 * Apr 3, 2025: 🔥 We also release [SkyReels-A2](https://github.com/SkyworkAI/SkyReels-A2). This is an open-sourced controllable video generation framework capable of assembling arbitrary visual elements.
@@ -223,10 +223,10 @@ python3 generate_video_df.py \
 > - `--addnoise_condition` is used to help smooth the long video generation by adding some noise to the clean condition. Too large noise can cause the inconsistency as well. 20 is a recommended value, and you may try larger ones, but it is recommended to not exceed 50.
 > - Generating a 540P video using the 1.3B model requires approximately 14.7GB peak VRAM, while the same resolution video using the 14B model demands around 51.2GB peak VRAM.
 
-video extention
+- **<span id="ve">Video Extention</span>**
 ```shell
 model_id=Skywork/SkyReels-V2-DF-14B-540P
-# asynchronous inference
+# video extention
 python3 generate_video_df.py \
   --model_id ${model_id} \
   --resolution 540P \
@@ -245,7 +245,7 @@ python3 generate_video_df.py \
 > **Note**: 
 > - When performing video extension, you need to pass the `--video_path  ${video_path}` parameter to specify the video to be extended.
 
-start/end frame control
+- **<span id="se">Start/End Frame Control</span>**
 ```shell
 model_id=Skywork/SkyReels-V2-DF-14B-540P
 # asynchronous inference
