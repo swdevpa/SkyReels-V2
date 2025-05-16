@@ -13,7 +13,7 @@ Welcome to the **SkyReels V2** repository! Here, you'll find the model weights a
 
 
 ## 🔥🔥🔥 News!!
-* May 16, 2025: 🔥 We support video extension and experimental features for start/end frame control.
+* May 16, 2025: 🔥 We support video extension and experimental features for start/end frame control in diffusion forcing model.
 * Apr 24, 2025: 🔥 We release the 720P models, [SkyReels-V2-DF-14B-720P](https://huggingface.co/Skywork/SkyReels-V2-DF-14B-720P) and [SkyReels-V2-I2V-14B-720P](https://huggingface.co/Skywork/SkyReels-V2-I2V-14B-720P). The former facilitates infinite-length autoregressive video generation, and the latter focuses on Image2Video synthesis.
 * Apr 21, 2025: 👋 We release the inference code and model weights of [SkyReels-V2](https://huggingface.co/collections/Skywork/skyreels-v2-6801b1b93df627d441d0d0d9) Series Models and the video captioning model [SkyCaptioner-V1](https://huggingface.co/Skywork/SkyCaptioner-V1) .
 * Apr 3, 2025: 🔥 We also release [SkyReels-A2](https://github.com/SkyworkAI/SkyReels-A2). This is an open-sourced controllable video generation framework capable of assembling arbitrary visual elements.
@@ -222,6 +222,51 @@ python3 generate_video_df.py \
 > - To reduce peak VRAM, just lower the `--base_num_frames`, e.g., to 77 or 57, while keeping the same generative length `--num_frames` you want to generate. This may slightly reduce video quality, and it should not be set too small.
 > - `--addnoise_condition` is used to help smooth the long video generation by adding some noise to the clean condition. Too large noise can cause the inconsistency as well. 20 is a recommended value, and you may try larger ones, but it is recommended to not exceed 50.
 > - Generating a 540P video using the 1.3B model requires approximately 14.7GB peak VRAM, while the same resolution video using the 14B model demands around 51.2GB peak VRAM.
+
+video extention
+```shell
+model_id=Skywork/SkyReels-V2-DF-14B-540P
+# asynchronous inference
+python3 generate_video_df.py \
+  --model_id ${model_id} \
+  --resolution 540P \
+  --ar_step 0 \
+  --base_num_frames 97 \
+  --num_frames 120 \
+  --overlap_history 17 \
+  --prompt ${prompt} \
+  --addnoise_condition 20 \
+  --offload \
+  --use_ret_steps \
+  --teacache \
+  --teacache_thresh 0.3 \
+  --video_path ${video_path}
+```
+> **Note**: 
+> - When performing video extension, you need to pass the `--video_path  ${video_path}` parameter to specify the video to be extended.
+
+start/end frame control
+```shell
+model_id=Skywork/SkyReels-V2-DF-14B-540P
+# asynchronous inference
+python3 generate_video_df.py \
+  --model_id ${model_id} \
+  --resolution 540P \
+  --ar_step 0 \
+  --base_num_frames 97 \
+  --num_frames 97 \
+  --overlap_history 17 \
+  --prompt ${prompt} \
+  --addnoise_condition 20 \
+  --offload \
+  --use_ret_steps \
+  --teacache \
+  --teacache_thresh 0.3 \
+  --image ${image} \
+  --end_image ${end_image}
+```
+> **Note**:
+> - When controlling the start and end frames, you need to pass the `--image  ${image}` parameter to control the generation of the start frame and the `--end_image  ${end_image}` parameter to control the generation of the end frame.
 
 - **Text To Video & Image To Video**
 
