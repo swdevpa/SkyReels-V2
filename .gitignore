@@ -17,3 +17,4 @@ scripts/.gradio/*
 *.jsonl
 out/*
 model/
+run.sh
