@@ -158,7 +158,7 @@ if __name__ == "__main__":
         assert input_num_frames >= args.overlap_history, "The input video is too short."
 
         if v_height > v_width:
-            width, heigth = height, width
+            width, height = height, width
 
         video_frames = pipe.extend_video(
             prompt=prompt_input,
